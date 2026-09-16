@@ -1,0 +1,21 @@
+services:
+  server:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: ${PORT:-3000}
+      DB_HOST: ${DB_HOST:-db}
+      DB_USER: ${DB_USER:-myuser}
+      DB_PASSWORD: ${DB_PASSWORD:-mypassword}
+      DB_DATABASE: ${DB_DATABASE:-crud_operations}
+      DB_WAITFORCONNECTIONS: ${DB_WAITFORCONNECTIONS:-true}
+      DB_CONNECTIONLIMIT: ${DB_CONNECTIONLIMIT:-10}
+      DB_QUEUELIMIT: ${DB_QUEUELIMIT:-0}
+      DB_TABLENAME: ${DB_TABLENAME:-users}
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    name: three-tier-network
